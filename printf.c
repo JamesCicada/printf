@@ -2,6 +2,9 @@
 #include <stdarg.h>
 #include "main.h"
 
+void print_number(int n);
+int get_num_length(int n);
+
 /**
  * _printf - Produces output according to a format
  * @format: The format string
@@ -46,7 +49,7 @@ int _printf(const char *format, ...)
 					count++;
 					break;
 				case 'd':
-					case 'i':
+				case 'i':
 					num = va_arg(args, int);
 					print_number(num);
 					count += get_num_length(num);
@@ -57,7 +60,6 @@ int _printf(const char *format, ...)
 					count += 2;
 					break;
 			}
-			break;
 		}
 		else
 		{
