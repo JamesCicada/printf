@@ -5,11 +5,11 @@ int format_parser(const char *fmt, int *ind, va_list list, char buffer[], int fl
 {
 	int i, unknown_len = 0, printed_chars = -1;
 	fmt_t fmt_types[] = {
-		{'c', print_char}, {'s', print_string}, {'%', print_percent},
-		{'i', print_int}, {'d', print_int}, {'b', print_binary},
-		{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
-		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
-		{'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
+		{'c', printf}, {'s', printf}, {'%', printf},
+		{'i', printf}, {'d', printf}, {'b', print_binary},
+		{'u', printf}, {'o', printf}, {'x', printf},
+		{'X', printf}, {'p', printf}, {'S', printf},
+		{'r', print_reverse}, {'R', printf}, {'\0', printf}
 	};
 
 	for (i = 0; fmt_types[i].fmt != '\0'; i++)
