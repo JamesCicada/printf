@@ -1,38 +1,33 @@
 #include "main.h"
+#include <stdarg.h>
 
-/**
- * print_binary - Prints an unsigned int in binary format
- * @list: List of arguments
- * @buffer: Buffer array to handle print
- * @flags: Active flags (unused)
- * @width: Width specification (unused)
- * @precision: Precision specification (unused)
- * @size: Size specifier (unused)
- * Return: Number of characters printed
- */
 int print_binary(va_list list, char buffer[], int flags, int width, int precision, int size)
 {
 	unsigned int num = va_arg(list, unsigned int);
-	int len = 0;
-	unsigned int temp = num;
+	int count = 0;
+	int bin_len = get_num_length(num, 2);
+	char *binary = convert_to_base(num, 2);
 
-	if (num == 0)
+	if (!binary)
 	{
-		buffer[_putchar(buffer, '0')] = '\0';
-		return 1;
+		return -1;
 	}
 
-	while (temp != 0)
+	if (flags & FLAG_HASH)
 	{
-		temp >>= 1;
-		len++;
+		count += write(1, "0b", 2);
 	}
 
-	for (; len > 0; len--)
+	count += print_padding(buffer, width, bin_len, flags & FLAG_ZERO);
+
+	if (count == -1)
 	{
-		buffer[_putchar(buffer, ((num >> (len - 1)) & 1) + '0')] = '\0';
+		free(binary);
+		return -1;
 	}
 
-	return num;
+	count += write(1, binary, bin_len);
+	free(binary);
+	return count;
 }
 
