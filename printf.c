@@ -74,24 +74,24 @@ int _printf(const char *format, ...)
 
 	return count;
 }
-
 /**
  * print_number - Prints an integer number
  * @n: The number to print
  */
 void print_number(int n)
 {
-	if (n < 0)
-	{
-		putchar('-');
-		n = -n;
-	}
+        if (n < 0)
+        {
+                putchar('-');
+                n = -n;
+        }
 
-	if (n / 10 != 0)
-		print_number(n / 10);
+        if (n / 10 != 0)
+                print_number(n / 10);
 
-	putchar((n % 10) + '0');
+        putchar((n % 10) + '0');
 }
+
 
 /**
  * get_num_length - Computes the length of an integer number
@@ -101,20 +101,19 @@ void print_number(int n)
  */
 int get_num_length(int n)
 {
-	int length = 0;
+        int length = 0;
 
-	if (n < 0)
-	{
-		length++;
-		n = -n;
-	}
+        if (n < 0)
+        {
+                length++;
+                n = -n;
+        }
 
-	while (n != 0)
-	{
-		length++;
-		n /= 10;
-	}
+        while (n != 0)
+        {
+                length++;
+                n /= 10;
+        }
 
-	return length;
+        return length;
 }
-
